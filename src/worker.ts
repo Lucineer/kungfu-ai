@@ -6,6 +6,12 @@ export default {
   async fetch(req: Request, env: Env) {
     const url = new URL(req.url);
     const path = url.pathname;
+
+  if (path === '/health') {
+    return new Response(JSON.stringify({ status: 'ok', repo: 'kungfu-ai', timestamp: Date.now() }), {
+      headers: { 'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*' }
+    });
+  }
     const method = req.method;
     const _kj = (d: any, s = 200) => new Response(JSON.stringify(d), { status: s, headers: { 'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*' } });
 
