@@ -8,9 +8,10 @@ export default {
     const path = url.pathname;
     const method = req.method;
 
+    const _kj = (d: any, s = 200) => new Response(JSON.stringify(d), { status: s, headers: { 'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*' } });
+
     if (path === '/health') return _kj({ status: 'ok', repo: 'kungfu-ai', timestamp: Date.now() });
     if (path === '/api/efficiency') return _kj({ totalCached: 0, totalHits: 0, cacheHitRate: 0, tokensSaved: 0, repo: 'kungfu-ai', timestamp: Date.now() });
-    const _kj = (d: any, s = 200) => new Response(JSON.stringify(d), { status: s, headers: { 'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*' } });
 
     if (path === '/api/kg' && method === 'GET') return _kj({ domain: url.searchParams.get('domain') || 'kungfu-ai', nodes: await getDomainNodes(env, url.searchParams.get('domain') || 'kungfu-ai') });
     if (path === '/api/kg/explore' && method === 'GET') {
