@@ -1,8 +1,8 @@
-account_id = "2bd99d5b13b2186382cd3dc995b0bb18"
 name = "kungfu-ai"
 main = "src/worker.ts"
+account_id = "049ff5e84ecf636b53b162cbb580aae6"
 compatibility_date = "2024-01-01"
 
 [[kv_namespaces]]
-binding = "KG"
-id = "c7886204c80845c6b9568693ed277b75"
+binding = "DOJO_KV"
+id = "dc05fcbbc5d74d0c8d0cde0d8449ad80"
