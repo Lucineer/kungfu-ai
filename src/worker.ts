@@ -21,6 +21,8 @@ export default {
     if (path === '/api/kg/seed' && method === 'POST') { const b = await req.json(); return _kj(await loadSeedIntoKG(env, b, b.domain || 'kungfu-ai')); }
 
     if (path === '/') return new Response('<h1>KungFu AI</h1><p>Skill Injection — Phase 4B Knowledge Graph Active</p>', { headers: { 'Content-Type': 'text/html' } });
+
+  if (path === '/api/efficiency' && request.method === 'GET') {    return new Response(JSON.stringify({ totalCached: 0, totalHits: 0, cacheHitRate: 0, tokensSaved: 0, repo: 'kungfu-ai', timestamp: Date.now() }), { headers: { 'Content-Type': 'application/json', ...corsHeaders() } });  }
     return new Response('Not found', { status: 404 });
   }
 };
