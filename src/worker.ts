@@ -113,7 +113,9 @@ function landingPage(): string {
 footer{text-align:center;padding:2rem;color:#475569;font-size:.8rem}
 </style></head><body>
 <div class="hero"><div>
-<h1>KungFu.ai</h1>
+
+      <img src="https://cocapn-logos.casey-digennaro.workers.dev/img/cocapn-logo-v1.png" alt="Cocapn" style="width:64px;height:auto;margin-bottom:.5rem;border-radius:8px;display:block;margin-left:auto;margin-right:auto">
+      <h1>KungFu.ai</h1>
 <div class="sub">The Dojo</div>
 <p class="quote">"I know kung fu."</p>
 <p>The catalog rigs your mech. The dojo trains your pilot. Skill injection reshapes the inside of the model — prompt patterns, few-shot examples, custom weights — so your agent handles the storm it's heading into.</p>
