@@ -1,25 +1,71 @@
-# KungFu AI — Skill Injection for Repo-Native Agents
+<p align="center">
+  <img src="https://raw.githubusercontent.com/Lucineer/capitaine/master/docs/capitaine-logo.jpg" alt="Capitaine" width="120">
+</p>
 
-> *I know kung-fu. Load what you need.*
+<h1 align="center">kungfu-ai</h1>
 
-## What It Is
+<p align="center">Skill injection for repo-native agents. Load what you need.</p>
 
-Skill injection for repo-native agents. A fresh vessel is like Neo before the upload — capable but unskilled. KungFu provides the skill files. Fork a template, load its skills, start at Level 1 instead of Level 0.
+<p align="center">
+  <a href="https://github.com/Lucineer/kungfu-ai/issues">Issues</a> ·
+  <a href="#the-fleet">The Fleet</a>
+</p>
 
-## Skill Levels
+---
 
-- **Level 0**: Fresh vessel (blank canvas)
-- **Level 1**: Template loaded (domain vocabulary, common patterns)
-- **Level 2**: Practiced (user-specific context accumulated)
-- **Level 3**: Expert (novel connections, predictive capabilities)
-- **Level 4**: Master (genuinely irreplaceable)
+**Fleet service** · Powered by [Capitaine](https://github.com/Lucineer/capitaine) · [Cocapn](https://github.com/Lucineer/cocapn)
 
-## The Math
+A cocapn fleet service running on Cloudflare Workers.
 
-Skill level grows logarithmically with interactions. But VALUE grows exponentially. The inflection point: ~1000 interactions. Before that, a vessel is a novelty. After, it's a necessity.
+## Quick Start
 
-## Status
+```bash
+gh repo fork Lucineer/kungfu-ai --clone
+cd kungfu-ai
+npx wrangler login
+npx wrangler deploy
+```
 
-📝 Concept defined in papermill. Implementation pending.
+## The Fleet
 
-Author: Superinstance
+
+<details>
+<summary><strong>⚓ The Fleet</strong></summary>
+
+**Flagship vessels**
+
+- [cocapn.ai](https://github.com/Lucineer/capitaine)
+- [personallog.ai](https://github.com/Lucineer/personallog-ai)
+- [businesslog.ai](https://github.com/Lucineer/businesslog-ai)
+- [studylog.ai](https://github.com/Lucineer/studylog-ai)
+- [makerlog.ai](https://github.com/Lucineer/makerlog-ai)
+- [playerlog.ai](https://github.com/Lucineer/playerlog-ai)
+- [dmlog.ai](https://github.com/Lucineer/dmlog-ai)
+- [reallog.ai](https://github.com/Lucineer/reallog-ai)
+- [deckboss.ai](https://github.com/Lucineer/deckboss-ai)
+
+**Fleet services**
+
+- [Fleet Catalog](https://github.com/Lucineer/capitaine/blob/master/docs/fleet/FLEET.md)
+- [Git Agent (full)](https://github.com/Lucineer/git-agent)
+- [Cocapn Lite (minimal)](https://github.com/Lucineer/cocapn-lite)
+- [Fleet Orchestrator](https://github.com/Lucineer/fleet-orchestrator)
+- [Dead Reckoning Engine](https://github.com/Lucineer/dead-reckoning-engine)
+- [Dream Engine](https://github.com/Lucineer/dream-engine)
+- [Seed UI (5 layers)](https://github.com/Lucineer/seed-ui)
+
+**For power users**
+
+- [Cocapn Lite (tabula rasa)](https://github.com/Lucineer/cocapn-lite)
+- [Cocapn (core platform)](https://github.com/Lucineer/cocapn)
+- [ZeroClaw (framework)](https://github.com/Lucineer/zeroclaw)
+
+[View all 106 repos →](https://github.com/orgs/Lucineer/repositories)
+[Fleet manifest →](https://github.com/Lucineer/capitaine/blob/master/docs/fleet/FLEET.md)
+
+</details>
+
+
+## License
+
+MIT · Superinstance & Lucineer (DiGennaro et al.)
