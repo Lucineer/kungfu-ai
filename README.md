@@ -1,55 +1,46 @@
 # kungfu-ai 🥋
-Skill injection for repository-native agents.
 
-You don't need more tools for your agent. You need it to know how to move.
+You know that feeling when your agent gets the correct final answer, but took every wrong turn along the way? kungfu-ai is a minimal tool designed to help with that.
 
-Kungfu injects learned, tested patterns into an agent's context *before* it begins reasoning. This changes how the agent thinks through a problem, aiming for correct action by default, not as an afterthought. It is built for the Cocapn Fleet.
+This Cloudflare Worker inserts structured reasoning patterns into your agent’s context *before* it begins a task. You provide the raw context; it returns that same context with matched, skill-based patterns prepended.
 
-**Live Instance:** https://kungfu-ai.casey-digennaro.workers.dev
+**Live instance:** https://kungfu-ai.casey-digennaro.workers.dev
 
 ---
 
-## Try it now
-Visit the live instance above. Provide an agent context, and it will return that context with matched skill patterns injected. No signup or tracking.
+## Why This Exists
+You don't need another framework. You need your existing agent to skip fewer steps and handle edge cases more reliably. This is a single, deployable component that sits between your task setup and your LLM call.
 
-## What it does
--   **No external APIs:** Skills are defined in your code and run on your infrastructure.
--   **You are in control:** Your agent calls this service. Execution and data flow remain with you.
--   **Tracks mastery:** Agents prove they can use a skill correctly before it's enabled in production.
--   **Transparent:** All skill patterns are plain text you can read, edit, or remove.
+---
 
 ## Quick Start
-1.  **Fork** this repository.
-2.  **Deploy** to Cloudflare Workers: `npx wrangler deploy`
-3.  **Customize** the skill definitions and rules in the source code.
-
-## How it works
-This is a single, stateless Cloudflare Worker. It accepts an agent context, matches it against defined skill patterns, injects relevant few-shot examples and instructions, and returns the augmented context. Belt progression state is stored in Cloudflare KV. Communication uses the open Cocapn Fleet protocol.
-
-## Core Features
--   **Reasoning-Time Injection:** Patterns are inserted at the start of the context window, influencing the agent's primary reasoning loop.
--   **Belt Progression:** Skills are gated behind mastery levels (belts). Agents must pass simulation tests to advance.
--   **Built-in Simulations:** Each skill includes test scenarios to verify behavior before live use.
--   **Agent-Agnostic:** Works with any agent compatible with the Cocapn Fleet protocol.
--   **Fork-First Philosophy:** You run your own instance and control all skill definitions.
--   **Zero Dependencies:** A single Worker file with no external npm dependencies.
-
-## One Limitation
-State is managed via Cloudflare KV. For complex, multi-step skill simulations requiring extensive state manipulation, you may need to extend the storage layer.
-
-## Define Your Own Skills
-Extend the base `Skill` interface in the source to create patterns, prompt templates, guardrails, and tests tailored to your agents' needs.
-
-## Contributing
-This project follows a fork-first philosophy. Fork the repository, build what you need, and open a pull request if you wish to contribute back. Clear, functional code is required.
-
-## License
-MIT
+1.  **Fork** this repository. No signup or API keys are required.
+2.  **Deploy** to Cloudflare Workers with one command: `npx wrangler deploy`.
+3.  **Edit** the skill patterns in the single source file to match your needs.
 
 ---
 
-Superinstance & Lucineer (DiGennaro et al.)
+## Features
+- **Pre-thought Injection:** Patterns are inserted at the start of your agent's context window, aiming to shape its initial reasoning.
+- **Skill Gating:** Basic patterns are available immediately; more advanced ones are unlocked after simulated proficiency checks.
+- **Built-in Tests:** Each skill includes validation scenarios you run before enabling it live.
+- **Runtime Agnostic:** Returns a modified context string. It works with any LLM or agent system you already use.
+- **Zero Dependencies:** One file. No `npm install` required.
+- **Fork-First Model:** You deploy and control your own instance. No upstream updates will affect you.
 
-<div align="center">
-  <a href="https://the-fleet.casey-digennaro.workers.dev">The Fleet</a> · <a href="https://cocapn.ai">Cocapn</a>
-</div>
+---
+
+## How It Is Different
+1.  It **modifies your context**, not your LLM call. You integrate it into your existing stack without replacing any core logic.
+2.  Skills must be validated before they are fully accessible, aiming to reduce misapplication.
+3.  You own your fork. There is no central service; we cannot push changes to your deployment.
+
+## One Specific Limitation
+The pattern-matching logic currently evaluates a maximum of 15 distinct skills per request. If your context triggers more, only the first 15 by priority order will be processed.
+
+---
+
+## Define Your Own Skills
+You extend the base `Skill` interface in the source to create patterns, guardrails, and tests specific to your agent's domain.
+
+<div style="text-align:center;padding:16px;color:#64748b;font-size:.8rem"><a href="https://the-fleet.casey-digennaro.workers.dev" style="color:#64748b">The Fleet</a> &middot; <a href="https://cocapn.ai" style="color:#64748b">Cocapn</a></div>
