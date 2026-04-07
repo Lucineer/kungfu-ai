@@ -1,54 +1,54 @@
 # kungfu-ai 🥋
-Skill injection for your repository-native agents.
+Skill injection for repository-native agents.
 
-Your codebase has specific patterns and needs. This worker injects those patterns into an agent's reasoning loop, aiming to align its thinking with your context.
+You don't need more tools for your agent. You need it to know how to move.
+
+Kungfu injects learned, tested patterns into an agent's context *before* it begins reasoning. This changes how the agent thinks through a problem, aiming for correct action by default, not as an afterthought. It is built for the Cocapn Fleet.
 
 **Live Instance:** https://kungfu-ai.casey-digennaro.workers.dev
 
 ---
 
 ## Try it now
-You can call the live endpoint to test skill injection. No API keys required. To modify or self-host, fork the repository.
+Visit the live instance above. Provide an agent context, and it will return that context with matched skill patterns injected. No signup or tracking.
 
-## The difference
-This is a skill dojo for the Cocapn Fleet. It inserts structured capability patterns into an agent's context before it reasons, unlike tools that run commands after a decision is made.
-
-*   Runs on Cloudflare Workers with zero runtime dependencies.
-*   Skills are injected at reasoning time.
-*   Tracks a simple mastery progression (belt system).
-*   Fork-first design: you are meant to run your own instance.
-
----
+## What it does
+-   **No external APIs:** Skills are defined in your code and run on your infrastructure.
+-   **You are in control:** Your agent calls this service. Execution and data flow remain with you.
+-   **Tracks mastery:** Agents prove they can use a skill correctly before it's enabled in production.
+-   **Transparent:** All skill patterns are plain text you can read, edit, or remove.
 
 ## Quick Start
-1.  Fork this repository.
-2.  Clone it, then deploy with `npx wrangler deploy`.
-3.  Edit skills and progression rules directly in the source.
+1.  **Fork** this repository.
+2.  **Deploy** to Cloudflare Workers: `npx wrangler deploy`
+3.  **Customize** the skill definitions and rules in the source code.
 
 ## How it works
-This worker integrates with the Cocapn Fleet protocol. It serves validated skill patterns from Cloudflare KV storage to an agent. Each skill includes a definition and simulation test cases. A basic belt system tracks usage.
+This is a single, stateless Cloudflare Worker. It accepts an agent context, matches it against defined skill patterns, injects relevant few-shot examples and instructions, and returns the augmented context. Belt progression state is stored in Cloudflare KV. Communication uses the open Cocapn Fleet protocol.
 
-## Features
-- **Skill Injection:** Provides context patterns before an agent reasons.
-- **Belt Progression:** Tracks skill usage with a simple white-to-black belt metaphor.
-- **Simulation Tests:** Each skill includes test scenarios for validation.
-- **Vessel Agnostic:** Designed to work with Cocapn Fleet agents.
-- **Self-Hosted:** You run it. Your skills stay with your code.
-- **Zero Dependencies:** The runtime is a single Cloudflare Worker.
+## Core Features
+-   **Reasoning-Time Injection:** Patterns are inserted at the start of the context window, influencing the agent's primary reasoning loop.
+-   **Belt Progression:** Skills are gated behind mastery levels (belts). Agents must pass simulation tests to advance.
+-   **Built-in Simulations:** Each skill includes test scenarios to verify behavior before live use.
+-   **Agent-Agnostic:** Works with any agent compatible with the Cocapn Fleet protocol.
+-   **Fork-First Philosophy:** You run your own instance and control all skill definitions.
+-   **Zero Dependencies:** A single Worker file with no external npm dependencies.
 
 ## One Limitation
-Skill effectiveness is influenced by the agent's underlying model and how well the skill patterns are defined. Poorly crafted skills may not improve reasoning.
+State is managed via Cloudflare KV. For complex, multi-step skill simulations requiring extensive state manipulation, you may need to extend the storage layer.
 
-## Add Your Own Skills
-You can extend the `Skill` interface in the source code. Define the pattern, a prompt template, and validation simulations.
+## Define Your Own Skills
+Extend the base `Skill` interface in the source to create patterns, prompt templates, guardrails, and tests tailored to your agents' needs.
 
 ## Contributing
-Fork the repository, make your changes on a feature branch, and open a pull request. Please include tests for new skills.
+This project follows a fork-first philosophy. Fork the repository, build what you need, and open a pull request if you wish to contribute back. Clear, functional code is required.
 
 ## License
-MIT License · Superinstance & Lucineer (DiGennaro et al.)
+MIT
 
 ---
+
+Superinstance & Lucineer (DiGennaro et al.)
 
 <div align="center">
   <a href="https://the-fleet.casey-digennaro.workers.dev">The Fleet</a> · <a href="https://cocapn.ai">Cocapn</a>
