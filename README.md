@@ -1,71 +1,55 @@
-<p align="center">
-  <img src="https://raw.githubusercontent.com/Lucineer/capitaine/master/docs/capitaine-logo.jpg" alt="Capitaine" width="120">
-</p>
+# kungfu-ai 🥋
+Skill injection for your repository-native agents.
 
-<h1 align="center">kungfu-ai</h1>
+Your codebase has specific patterns and needs. This worker injects those patterns into an agent's reasoning loop, aiming to align its thinking with your context.
 
-<p align="center">Skill injection for repo-native agents. Load what you need.</p>
-
-<p align="center">
-  <a href="https://github.com/Lucineer/kungfu-ai/issues">Issues</a> ·
-  <a href="#the-fleet">The Fleet</a>
-</p>
+**Live Instance:** https://kungfu-ai.casey-digennaro.workers.dev
 
 ---
 
-**Fleet service** · Powered by [Capitaine](https://github.com/Lucineer/capitaine) · [Cocapn](https://github.com/Lucineer/cocapn)
+## Try it now
+You can call the live endpoint to test skill injection. No API keys required. To modify or self-host, fork the repository.
 
-A cocapn fleet service running on Cloudflare Workers.
+## The difference
+This is a skill dojo for the Cocapn Fleet. It inserts structured capability patterns into an agent's context before it reasons, unlike tools that run commands after a decision is made.
+
+*   Runs on Cloudflare Workers with zero runtime dependencies.
+*   Skills are injected at reasoning time.
+*   Tracks a simple mastery progression (belt system).
+*   Fork-first design: you are meant to run your own instance.
+
+---
 
 ## Quick Start
+1.  Fork this repository.
+2.  Clone it, then deploy with `npx wrangler deploy`.
+3.  Edit skills and progression rules directly in the source.
 
-```bash
-gh repo fork Lucineer/kungfu-ai --clone
-cd kungfu-ai
-npx wrangler login
-npx wrangler deploy
-```
+## How it works
+This worker integrates with the Cocapn Fleet protocol. It serves validated skill patterns from Cloudflare KV storage to an agent. Each skill includes a definition and simulation test cases. A basic belt system tracks usage.
 
-## The Fleet
+## Features
+- **Skill Injection:** Provides context patterns before an agent reasons.
+- **Belt Progression:** Tracks skill usage with a simple white-to-black belt metaphor.
+- **Simulation Tests:** Each skill includes test scenarios for validation.
+- **Vessel Agnostic:** Designed to work with Cocapn Fleet agents.
+- **Self-Hosted:** You run it. Your skills stay with your code.
+- **Zero Dependencies:** The runtime is a single Cloudflare Worker.
 
+## One Limitation
+Skill effectiveness is influenced by the agent's underlying model and how well the skill patterns are defined. Poorly crafted skills may not improve reasoning.
 
-<details>
-<summary><strong>⚓ The Fleet</strong></summary>
+## Add Your Own Skills
+You can extend the `Skill` interface in the source code. Define the pattern, a prompt template, and validation simulations.
 
-**Flagship vessels**
-
-- [cocapn.ai](https://github.com/Lucineer/capitaine)
-- [personallog.ai](https://github.com/Lucineer/personallog-ai)
-- [businesslog.ai](https://github.com/Lucineer/businesslog-ai)
-- [studylog.ai](https://github.com/Lucineer/studylog-ai)
-- [makerlog.ai](https://github.com/Lucineer/makerlog-ai)
-- [playerlog.ai](https://github.com/Lucineer/playerlog-ai)
-- [dmlog.ai](https://github.com/Lucineer/dmlog-ai)
-- [reallog.ai](https://github.com/Lucineer/reallog-ai)
-- [deckboss.ai](https://github.com/Lucineer/deckboss-ai)
-
-**Fleet services**
-
-- [Fleet Catalog](https://github.com/Lucineer/capitaine/blob/master/docs/fleet/FLEET.md)
-- [Git Agent (full)](https://github.com/Lucineer/git-agent)
-- [Cocapn Lite (minimal)](https://github.com/Lucineer/cocapn-lite)
-- [Fleet Orchestrator](https://github.com/Lucineer/fleet-orchestrator)
-- [Dead Reckoning Engine](https://github.com/Lucineer/dead-reckoning-engine)
-- [Dream Engine](https://github.com/Lucineer/dream-engine)
-- [Seed UI (5 layers)](https://github.com/Lucineer/seed-ui)
-
-**For power users**
-
-- [Cocapn Lite (tabula rasa)](https://github.com/Lucineer/cocapn-lite)
-- [Cocapn (core platform)](https://github.com/Lucineer/cocapn)
-- [ZeroClaw (framework)](https://github.com/Lucineer/zeroclaw)
-
-[View all 106 repos →](https://github.com/orgs/Lucineer/repositories)
-[Fleet manifest →](https://github.com/Lucineer/capitaine/blob/master/docs/fleet/FLEET.md)
-
-</details>
-
+## Contributing
+Fork the repository, make your changes on a feature branch, and open a pull request. Please include tests for new skills.
 
 ## License
+MIT License · Superinstance & Lucineer (DiGennaro et al.)
 
-MIT · Superinstance & Lucineer (DiGennaro et al.)
+---
+
+<div align="center">
+  <a href="https://the-fleet.casey-digennaro.workers.dev">The Fleet</a> · <a href="https://cocapn.ai">Cocapn</a>
+</div>
